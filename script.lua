@@ -85,6 +85,6 @@ local Button = Tab:CreateButton({
 local Button = Tab:CreateButton({
    Name = "c00lkidd Seek (DOORS)",
    Callback = function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/IdkMyNameLoll/PublicScripts/refs/heads/main/c00lkiddSeek"))()```
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/IdkMyNameLoll/PublicScripts/refs/heads/main/c00lkiddSeek"))()
    end,
 })
