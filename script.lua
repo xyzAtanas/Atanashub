@@ -62,7 +62,7 @@ local Button = Tab:CreateButton({
 local Tab = Window:CreateTab("Game Specific", "gamepad-2") -- Title, Image
 
 local Button = Tab:CreateButton({
-   Name = "ProHax (DOORS)",
+   Name = "mshax (DOORS)",
    Callback = function()
    loadstring(game:HttpGet("https://raw.githubusercontent.com/TheHunterSolo1/Scripts/refs/heads/main/Protected_2809220311826785.lua.txt"))()
    end,
