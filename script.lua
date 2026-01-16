@@ -95,3 +95,230 @@ local Button = Tab:CreateButton({
                                 loadstring(game:HttpGet("https://raw.githubusercontent.com/IdkMyNameLoll/PublicScripts/refs/heads/main/c00lkiddSeek"))()
                                 end,
 })
+
+local Tab = Window:CreateTab("Stars Align", "pin") -- Title, Image
+
+local Paragraph = Tab:CreateParagraph({Title = "The Stars Align section (made by me)", Content = "NOTE: Using anything here can get you banned in the game! I've never seen anyone before tho."})
+
+local Section = Tab:CreateSection("Stars")
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Peak of the Beak star",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(565, 285, -1071))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Over the Bell, Under the City star",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(2148, 684, -2096))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Beat the Heat star",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-237, 278, -2180))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to The Shattered City star",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(503, 824, -3316))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Aquatic Sparks star",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1641, 311, 2202))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Storm the Castle star",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-6677, 1041, -3747))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to You're Awesome finish (no star)",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-8132, 687, -5125))
+    end,
+})
+
+local Section = Tab:CreateSection("Quick Teleports")
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Raven Spire",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(537, -10, -1185))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Concatta Ruins",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1040, 36, -1758))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Canyon Conservatory",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-51, 26, -1741))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Fractured Citadel",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(352, 146, -2481))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to The Waterworks",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1962, 106, 450))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Forbidden Kingdom",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(6125, 64, -1673))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Mount Awesome",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-8188, -3, -3962))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Hydraulic Press Island",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(637, 80, -1539))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to awesome zone",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(164, 102, -1520))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to World's Worst Game of Hockey",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(175, 77, -1967))
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Teleport to Blender Island",
+    Callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(659, 60, -1971))
+    end,
+})
+
+local MainTab = Window:CreateTab("Places", 4483362458)
+local Section = MainTab:CreateSection("Detected Subplaces")
+
+-- Services
+local AssetService = game:GetService("AssetService")
+local TeleportService = game:GetService("TeleportService")
+local Debris = game:GetService("Debris")
+
+local isTeleporting = false
+
+local function AttemptTeleport(placeId, placeName)
+    if isTeleporting then 
+        Rayfield:Notify({
+            Title = "Please Wait",
+            Content = "Teleport is already in progress.",
+            Duration = 3,
+            Image = 4483362458,
+        })
+        return 
+    end
+
+    isTeleporting = true
+    
+    Rayfield:Notify({
+        Title = "Teleporting...",
+        Content = "Traveling to: " .. placeName,
+        Duration = 5,
+        Image = 4483362458,
+    })
+
+    TeleportService:Teleport(placeId)
+
+    local connection
+    connection = game.Players.LocalPlayer.OnTeleport:Connect(function(state)
+        if state == Enum.TeleportState.Failed then
+            isTeleporting = false
+            Rayfield:Notify({
+                Title = "Failed",
+                Content = "Teleport failed. Please try again.",
+                Duration = 5,
+                Image = 4483362458,
+            })
+            if connection then connection:Disconnect() end
+        end
+    end)
+
+    task.delay(10, function()
+        if isTeleporting then
+            isTeleporting = false
+        end
+    end)
+end
+
+task.spawn(function()
+    local success, pages = pcall(function()
+        return AssetService:GetGamePlacesAsync()
+    end)
+
+    if not success then
+        Rayfield:Notify({
+            Title = "Error",
+            Content = "Could not fetch game places. API might be blocked.",
+            Duration = 5,
+            Image = 4483362458,
+        })
+        return
+    end
+
+    while true do
+        for _, place in next, pages:GetCurrentPage() do
+            MainTab:CreateButton({
+                Name = place.Name .. " [" .. tostring(place.PlaceId) .. "]",
+                Callback = function()
+                    AttemptTeleport(place.PlaceId, place.Name)
+                end,
+            })
+        end
+
+        if pages.IsFinished then
+            break
+        end
+
+        pages:AdvanceToNextPageAsync()
+    end
+    
+    Rayfield:Notify({
+        Title = "Scan Complete",
+        Content = "All subplaces loaded into the list.",
+        Duration = 3,
+        Image = 4483362458,
+    })
+end)
