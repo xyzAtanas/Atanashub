@@ -67,18 +67,18 @@ local Button = Tab:CreateButton({
 })
 
 local Tab = Window:CreateTab("Game Specific", "gamepad-2") -- Title, Image
-
+-- idk if the buttons in this tab work
 local Button = Tab:CreateButton({
-    Name = "mshax (DOORS)",
+    Name = "ReHax (idfk atp) (DOORS)",
                                 Callback = function()
-                                loadstring(game:HttpGet("https://raw.githubusercontent.com/TheHunterSolo1/Scripts/refs/heads/main/Protected_2809220311826785.lua.txt"))()
+                                loadstring(game:HttpGet("https://raw.githubusercontent.com/TheHunterSolo1/OrangeHub/refs/heads/main/Rehax.luau"))()
                                 end,
 })
 
 local Button = Tab:CreateButton({
     Name = "Syla Hub (Total Roblox Drama)",
                                 Callback = function()
-                                loadstring(game:HttpGet("https://raw.githubusercontent.com/SylaHub/Syla-Hub/refs/heads/main/Loader"))()
+                                loadstring(game:HttpGet("https://pandadevelopment.net/virtual/file/68723c6d35eab6d3"))()
                                 end,
 })
 
