@@ -53,13 +53,6 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-    Name = "BetterBypasser",
-    Callback = function()
-    loadstring(game:HttpGet("https://github.com/Synergy-Networks/products/raw/main/BetterBypasser/loader.lua"))()
-    end,
-})
-
-local Button = Tab:CreateButton({
     Name = "morfOS (NOT MACOS!!!)",
     Callback = function()
     loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-morfOS-Universal-46903"))()
