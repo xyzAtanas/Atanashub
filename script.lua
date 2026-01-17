@@ -140,7 +140,7 @@ local Button = Tab:CreateButton({
 local Button = Tab:CreateButton({
     Name = "Teleport to Storm the Castle star",
     Callback = function()
-	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-6677, 1041, -3747))
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(6677, 1041, -3747))
     end,
 })
 
