@@ -61,11 +61,62 @@ local Button = Tab:CreateButton({
 
 local Tab = Window:CreateTab("Game Specific", "gamepad-2") -- Title, Image
 -- idk if the buttons in this tab work
+local savedKey = ""
+
+local Input = Tab:CreateInput({
+   Name = "Insert mspaint key",
+   CurrentValue = "",
+   PlaceholderText = "H7k9P2mXn5R8wL4vQz1tB6jY3sC9aF2d",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input1",
+   Callback = function(Text)
+       savedKey = Text
+       print("Key updated to: " .. savedKey)
+   end,
+})
+
 local Button = Tab:CreateButton({
-    Name = "ReHax (idfk atp) (DOORS)",
-                                Callback = function()
-                                loadstring(game:HttpGet("https://raw.githubusercontent.com/TheHunterSolo1/OrangeHub/refs/heads/main/Rehax.luau"))()
-                                end,
+   Name = "mspaint",
+   Callback = function()
+       if savedKey ~= "" then
+           Rayfield:Notify({
+               Title = "Authenticating",
+               Content = "Checking key and loading script...",
+               Duration = 5
+           })
+
+           script_key = savedKey
+           loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/002c19202c9946e6047b0c6e0ad51f84.lua"))()
+       else
+           Rayfield:Notify({
+               Title = "Missing Key",
+               Content = "Please enter your key into the textbox first!",
+               Duration = 5
+           })
+       end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "mspaint main site",
+   Callback = function()
+       setclipboard("https://mspaint.cc/")
+       
+       Rayfield:Notify({
+          Title = "Copied!",
+          Content = "Link has been copied to your clipboard.",
+          Duration = 5,
+          Image = 4483362458,
+          Actions = {
+             Ignore = {
+                Name = "Okay!",
+                Callback = function()
+                   print("The user acknowledged the copy.")
+                end
+             },
+          },
+       })
+   end,
 })
 
 local Button = Tab:CreateButton({
